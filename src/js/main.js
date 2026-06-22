@@ -10,7 +10,7 @@
   if (!canvas) return;
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x0a0a0f, 0.035);
+  scene.fog = new THREE.FogExp2(0x0F0F0F, 0.035);
 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
   camera.position.set(8, 6, 12);
@@ -29,17 +29,17 @@
   renderer.toneMappingExposure = 1.2;
 
   // ----- LIGHTS -----
-  const ambientLight = new THREE.AmbientLight(0x222244, 0.4);
+  const ambientLight = new THREE.AmbientLight(0x1A1A2E, 0.4);
   scene.add(ambientLight);
 
-  const mainLight = new THREE.DirectionalLight(0x00ddff, 0.8);
+  const mainLight = new THREE.DirectionalLight(0x6ACAF6, 0.8);
   mainLight.position.set(10, 20, 10);
   mainLight.castShadow = true;
   mainLight.shadow.mapSize.width = 2048;
   mainLight.shadow.mapSize.height = 2048;
   scene.add(mainLight);
 
-  const fillLight = new THREE.DirectionalLight(0x7b2ff7, 0.4);
+  const fillLight = new THREE.DirectionalLight(0x6ACAF6, 0.3);
   fillLight.position.set(-10, 10, -10);
   scene.add(fillLight);
 
@@ -48,14 +48,14 @@
   scene.add(rimLight);
 
   // Point light near the robot for dramatic effect
-  const robotLight = new THREE.PointLight(0x00ddff, 0.6, 15);
+  const robotLight = new THREE.PointLight(0x6ACAF6, 0.6, 15);
   robotLight.position.set(0, 3, 0);
   scene.add(robotLight);
 
   // ----- GROUND / TRACK -----
   const groundGeometry = new THREE.PlaneGeometry(40, 40);
   const groundMaterial = new THREE.MeshStandardMaterial({
-    color: 0x080810,
+    color: 0x0A0A0F,
     roughness: 0.8,
     metalness: 0.2,
     transparent: true,
@@ -115,7 +115,7 @@
 
     const lineGeometry = new THREE.BufferGeometry().setFromPoints(curvePoints);
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0x00ddff,
+      color: 0x6ACAF6,
       transparent: true,
       opacity: 0.3,
     });
@@ -125,7 +125,7 @@
     // Create a wider, more visible track with a tube
     const tubeGeo = new THREE.TubeGeometry(curve, 200, 0.06, 8, true);
     const tubeMat = new THREE.MeshBasicMaterial({
-      color: 0x00ddff,
+      color: 0x6ACAF6,
       transparent: true,
       opacity: 0.15,
     });
@@ -134,7 +134,7 @@
 
     // Glow dots along the path
     const dotMat = new THREE.MeshBasicMaterial({
-      color: 0x00ddff,
+      color: 0x6ACAF6,
       transparent: true,
       opacity: 0.4,
     });
@@ -158,7 +158,7 @@
 
     // ---- Chassis ----
     const bodyMat = new THREE.MeshStandardMaterial({
-      color: 0x1a1a2e,
+      color: 0x141420,
       roughness: 0.4,
       metalness: 0.7,
     });
@@ -171,7 +171,7 @@
 
     // Top plate (Arduino)
     const plateMat = new THREE.MeshStandardMaterial({
-      color: 0x0077b6,
+      color: 0x5AB8E8,
       roughness: 0.3,
       metalness: 0.1,
     });
@@ -220,8 +220,8 @@
 
     // ---- IR Sensors (front) ----
     const irMat = new THREE.MeshStandardMaterial({
-      color: 0x00ddff,
-      emissive: 0x00ddff,
+      color: 0x6ACAF6,
+      emissive: 0x6ACAF6,
       emissiveIntensity: 0.3,
     });
 
@@ -239,7 +239,7 @@
 
     // ---- Ultrasonic Sensor (HC-SR04) ----
     const usMat = new THREE.MeshStandardMaterial({
-      color: 0x222233,
+      color: 0x1A1A2E,
       roughness: 0.3,
       metalness: 0.5,
     });
@@ -249,8 +249,8 @@
 
     // Ultrasonic eyes
     const eyeMat = new THREE.MeshStandardMaterial({
-      color: 0x88ddff,
-      emissive: 0x44aaff,
+      color: 0x88DDFF,
+      emissive: 0x6ACAF6,
       emissiveIntensity: 0.5,
     });
     for (let x = -0.08; x <= 0.08; x += 0.16) {
@@ -306,7 +306,7 @@
   particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
   const particleMaterial = new THREE.PointsMaterial({
-    color: 0x4488ff,
+    color: 0x6ACAF6,
     size: 0.05,
     transparent: true,
     opacity: 0.4,
@@ -318,7 +318,7 @@
   scene.add(particles);
 
   // ----- FLOATING LINES / GRID -----
-  const gridHelper = new THREE.GridHelper(30, 30, 0x003355, 0x001122);
+  const gridHelper = new THREE.GridHelper(30, 30, 0x6ACAF6, 0x0F1A2E);
   gridHelper.position.y = -0.05;
   gridHelper.material.transparent = true;
   gridHelper.material.opacity = 0.15;
