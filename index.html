@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Line Follower & RoboQuest — Robotics Portfolio</title>
+  <meta name="description" content="3D showcase of line follower and RoboQuest competition code by Vihaan Parlikar" />
+  <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="src/css/style.css" />
+</head>
+<body>
+  <!-- ====== NAVIGATION ====== -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Robotics<span class="logo-accent">Portfolio</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#techradiance" class="nav-link">TechRadiance</a>
+        <a href="#roboquest" class="nav-link">RoboQuest</a>
+        <a href="#code-showcase" class="nav-link">Code</a>
+        <a href="#hardware" class="nav-link">Hardware</a>
+        <a href="#repos" class="nav-link">GitHub</a>
+      </div>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO SECTION ====== -->
+  <section id="hero" class="hero-section">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-up">Competition Robotics</div>
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        Line Follower<br />
+        <span class="gradient-text">&amp; RoboQuest</span>
+      </h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+        Embedded C / Arduino code for autonomous line-following robots with
+        obstacle avoidance, maze solving, and multi-stage competition logic.
+      </p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+        <a href="#techradiance" class="btn btn-primary">Explore Projects</a>
+        <a href="#code-showcase" class="btn btn-outline">View Code</a>
+      </div>
+      <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+        <div class="stat"><span class="stat-number" data-count="15">0</span><span class="stat-label">Arduino Sketches</span></div>
+        <div class="stat"><span class="stat-number" data-count="2">0</span><span class="stat-label">Competitions</span></div>
+        <div class="stat"><span class="stat-number" data-count="6">0</span><span class="stat-label">Sensor Types</span></div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll to explore</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION: TECHRADIANCE ====== -->
+  <section id="techradiance" class="section competition-section">
+    <div class="section-bg-shapes"></div>
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-number">01</span>
+        <h2 class="section-title">TechRadiance</h2>
+        <p class="section-desc">
+          8th &amp; 9th Edition — Line follower competitions featuring 2-IR,
+          3-IR, 4-IR, intersection handling, and obstacle avoidance.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline" data-aos="fade-up">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item" data-side="left">
+          <div class="timeline-card">
+            <div class="card-glow"></div>
+            <h3><span class="ir-badge">2 IR</span> Basic Line Follower</h3>
+            <p>Two IR sensors detect a black line on a white surface. The robot compares left/right readings and drives motors accordingly — the simplest form of line following.</p>
+            <div class="card-tags">
+              <span>2 IR sensors</span>
+              <span>L293D driver</span>
+              <span>Full speed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-side="right">
+          <div class="timeline-card">
+            <div class="card-glow"></div>
+            <h3><span class="ir-badge">3 IR</span> Maze Solver</h3>
+            <p>Three analog IR sensors with an Adafruit Motor Shield. The robot explores a maze, records the path, then optimizes it using LUR sequence simplification (e.g., LUS → R).</p>
+            <div class="card-tags">
+              <span>3 analog IR</span>
+              <span>Maze solving</span>
+              <span>Path optimization</span>
+              <span>Adafruit shield</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-side="left">
+          <div class="timeline-card">
+            <div class="card-glow"></div>
+            <h3><span class="ir-badge">4 IR</span> Gradual Tracking</h3>
+            <p>Four IR sensors with PWM speed control. The outer sensors trigger sharp corrections while the inner sensors handle gentle curves — producing smoother, more natural motion.</p>
+            <div class="card-tags">
+              <span>4 IR sensors</span>
+              <span>PWM ~39%</span>
+              <span>Gradual logic</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-side="right">
+          <div class="timeline-card">
+            <div class="card-glow"></div>
+            <h3><span class="ir-badge">+U/S</span> Obstacle Avoidance</h3>
+            <p>Combines line following with HC-SR04 ultrasonic obstacle detection. Features a non-blocking sweep algorithm that scans for the line after avoiding an obstacle.</p>
+            <div class="card-tags">
+              <span>HC-SR04</span>
+              <span>Non-blocking</span>
+              <span>Sweep scan</span>
+              <span>Line re-acquisition</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-side="left">
+          <div class="timeline-card">
+            <div class="card-glow"></div>
+            <h3><span class="ir-badge">⨁</span> Intersection Handler</h3>
+            <p>Detects junctions where both sensors go off-line simultaneously. Uses a 4-state machine: follow → stop 2s → forward 0.5s → next intersection stop.</p>
+            <div class="card-tags">
+              <span>Junction detection</span>
+              <span>4-state machine</span>
+              <span>Grid tracks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Comparison Table -->
+      <div class="comparison-section" data-aos="fade-up">
+        <h3 class="comparison-title">Feature Comparison</h3>
+        <div class="table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>2-IR</th>
+                <th>3-IR Maze</th>
+                <th>4-IR PWM</th>
+                <th>Obstacle Sweep</th>
+                <th>Intersection</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>IR Sensors</td>
+                <td>2 digital</td>
+                <td>3 analog</td>
+                <td>4 digital</td>
+                <td>2 + ultrasonic</td>
+                <td>2 digital</td>
+              </tr>
+              <tr>
+                <td>Speed Control</td>
+                <td>Full</td>
+                <td>Full</td>
+                <td>PWM 39%</td>
+                <td>Full</td>
+                <td>Full</td>
+              </tr>
+              <tr>
+                <td>Maze Solving</td>
+                <td>—</td>
+                <td>✅ Optimized</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Obstacle Avoid</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>✅ Intelligent</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Motor Driver</td>
+                <td>L293D</td>
+                <td>Adafruit Shield</td>
+                <td>L293D</td>
+                <td>L293D</td>
+                <td>L293D</td>
+              </tr>
+              <tr>
+                <td>Code Quality</td>
+                <td>✅ Clean</td>
+                <td>⚠️ Complex</td>
+                <td>✅ Clean</td>
+                <td>✅ Excellent</td>
+                <td>✅ Clean</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SECTION: ROBOQUEST ====== -->
+  <section id="roboquest" class="section competition-section alt-bg">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-number">02</span>
+        <h2 class="section-title">RoboQuest</h2>
+        <p class="section-desc">
+          Dr. Homi Bhabha Foundation competition — advanced robotics with
+          obstacle avoidance, parking, U-turns, and multi-objective state machines.
+        </p>
+      </div>
+
+      <div class="feature-grid" data-aos="fade-up">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/><path d="M16 24h16M24 16v16" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>Obstacle Avoiding</h3>
+          <p>7-state machine: follow → stop → turn out → go parallel → pass → turn in → reacquire. Uses millis() timers for non-blocking execution.</p>
+          <span class="feature-tag">Advanced</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 4L8 12v12c0 8.84 7.16 16 16 16s16-7.16 16-16V12L24 4z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+          <h3>Obstacle Sweep</h3>
+          <p>14-step sub-machine with intelligent line re-acquisition. Sweeps left/right at 70ms intervals until the line is found with 120ms debounce confirmation.</p>
+          <span class="feature-tag">Sweep</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="20" width="32" height="16" rx="4" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="28" r="2" fill="currentColor"/><circle cx="32" cy="28" r="2" fill="currentColor"/></svg>
+          </div>
+          <h3>Parking</h3>
+          <p>3-state machine that uses ultrasonic to find a parking spot, turns into position, then follows the line into the designated parking zone.</p>
+          <span class="feature-tag">Parking</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 4v40M4 24h40" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>U-Turn</h3>
+          <p>Detects double-line markers to trigger a 180° turn. Uses 4 states: follow → U-turn → follow back → stop. Includes LDR headlight for dark tunnels.</p>
+          <span class="feature-tag">Maneuver</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none"><polygon points="24,4 4,44 44,44" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+          <h3>State Round</h3>
+          <p>10-state objective machine: timed stops, obstacle detection at ≤17cm, and bottle-zone navigation. Comprehensive competition round logic.</p>
+          <span class="feature-tag">Multi-stage</span>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="14" r="6" stroke="currentColor" stroke-width="2"/><path d="M12 38c0-6.63 5.37-12 12-12s12 5.37 12 12" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>Headlight</h3>
+          <p>LDR + LED add-on for dark tunnel navigation. The headlight activates when ambient light drops below threshold (analogRead < 450).</p>
+          <span class="feature-tag">Light sensor</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CODE SHOWCASE ====== -->
+  <section id="code-showcase" class="section code-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Code Showcase</h2>
+        <p class="section-desc">
+          Click through the sketches to see annotated code with explanations
+          of the core logic.
+        </p>
+      </div>
+
+      <!-- Code Tabs -->
+      <div class="code-tabs" data-aos="fade-up">
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="tab-2ir">2-IR Basic</button>
+          <button class="tab-btn" data-tab="tab-3ir">3-IR Maze</button>
+          <button class="tab-btn" data-tab="tab-obstacle">Obstacle Sweep</button>
+          <button class="tab-btn" data-tab="tab-obstacle-avoid">Obstacle Avoiding</button>
+          <button class="tab-btn" data-tab="tab-state-round">State Round</button>
+          <button class="tab-btn" data-tab="tab-intersection">Intersection</button>
+        </div>
+
+        <!-- Tab: 2-IR Basic -->
+        <div class="tab-panel active" id="tab-2ir">
+          <div class="code-display">
+            <div class="code-header">
+              <span class="code-filename">2-IR / Line_Follower_2IR.ino</span>
+              <span class="code-lang">Embedded C++</span>
+            </div>
+            <div class="code-explanation">
+              <p><strong>How it works:</strong> Two digital IR sensors read the line position. If both detect the line (LOW), the robot moves forward. If only the left sensor sees the line, the robot turns right to correct. If only the right sees it, turn left. If neither sees the line, stop.</p>
+            </div>
+            <pre class="code-block"><code><span class="comment">// Define IR sensor pins</span>
+<span class="keyword">#define</span> LEFT_IR_PIN  7
+<span class="keyword">#define</span> RIGHT_IR_PIN 8
+
+<span class="keyword">#define</span> MOTOR1_PIN1 3  <span class="comment">// L293D input 1</span>
+<span class="keyword">#define</span> MOTOR1_PIN2 2  <span class="comment">// L293D input 2</span>
+<span class="keyword">#define</span> MOTOR2_PIN1 5
+<span class="keyword">#define</span> MOTOR2_PIN2 4
+
+<span class="function">void</span> <span class="function-name">loop</span>() {
+  <span class="type">int</span> leftSensor  = <span class="builtin">digitalRead</span>(LEFT_IR_PIN);
+  <span class="type">int</span> rightSensor = <span class="builtin">digitalRead</span>(RIGHT_IR_PIN);
+
+  <span class="keyword">if</span> (leftSensor == LOW && rightSensor == LOW) {
+    <span class="function-call">moveForward</span>();   <span class="comment">// Both on line → go straight</span>
+  }
+  <span class="keyword">else if</span> (leftSensor == LOW && rightSensor == HIGH) {
+    <span class="function-call">turnRight</span>();     <span class="comment">// Left on line → correct right</span>
+  }
+  <span class="keyword">else if</span> (leftSensor == HIGH && rightSensor == LOW) {
+    <span class="function-call">turnLeft</span>();      <span class="comment">// Right on line → correct left</span>
+  }
+  <span class="keyword">else</span> {
+    <span class="function-call">stopMoving</span>();    <span class="comment">// Both off line → stop</span>
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab: 3-IR Maze -->
+        <div class="tab-panel" id="tab-3ir">
+          <div class="code-display">
+            <div class="code-header">
+              <span class="code-filename">3-IR-L293D-Shield / Maze_Solver_3IR.ino</span>
+              <span class="code-lang">Embedded C++</span>
+            </div>
+            <div class="code-explanation">
+              <p><strong>How it works:</strong> Three analog IR sensors read the line with an Adafruit Motor Shield. During exploration, the robot records turns as 'L', 'R', 'S' (straight), 'U' (U-turn). After exploration, it optimizes the path by simplifying LUR sequences (e.g., LUS → R, LUL → S). The optimized path is then replayed at speed.</p>
+            </div>
+            <pre class="code-block"><code><span class="keyword">#include</span> &lt;AFMotor.h&gt;
+
+<span class="type">char</span> a[100];  <span class="comment">// exploration path</span>
+<span class="type">char</span> b[100];  <span class="comment">// optimized path</span>
+<span class="type">int</span> mode = 0;
+
+<span class="function">void</span> <span class="function-name">loop</span>() {
+  <span class="keyword">if</span> (mode == 0) {  <span class="comment">// EXPLORE mode</span>
+    <span class="type">int</span> l = <span class="builtin">digitalRead</span>(LS);
+    <span class="type">int</span> r = <span class="builtin">digitalRead</span>(RS);
+    <span class="type">int</span> m = <span class="builtin">digitalRead</span>(MS);
+
+    <span class="keyword">if</span> (l == 1 && m == 0 && r == 1) {     <span class="comment">// Straight</span>
+      a[i++] = 'S';
+    } <span class="keyword">else if</span> (l == 0 && m == 0 && r == 1) { <span class="comment">// Left turn</span>
+      a[i++] = 'L';
+    } <span class="keyword">else if</span> (l == 1 && m == 0 && r == 0) { <span class="comment">// Right turn</span>
+      a[i++] = 'R';
+    }
+  }
+  <span class="keyword">else</span> {  <span class="comment">// SOLVE mode — path optimization</span>
+    <span class="comment">// Simplify LUR sequences:</span>
+    <span class="comment">// LUS → R,  LUL → S,  LUR → U</span>
+    <span class="keyword">if</span> (a[j] == 'L' && a[j+1] == 'U' && a[j+2] == 'S')
+      b[q++] = 'R';  j += 3;
+    <span class="keyword">else if</span> (a[j] == 'L' && a[j+1] == 'U' && a[j+2] == 'L')
+      b[q++] = 'S';  j += 3;
+    <span class="comment">// ... more optimization rules ...</span>
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab: Obstacle Sweep -->
+        <div class="tab-panel" id="tab-obstacle">
+          <div class="code-display">
+            <div class="code-header">
+              <span class="code-filename">Line-Followers-And-Obstacle-Avoidance / Line_Follower_Obstacle_Sweep.ino</span>
+              <span class="code-lang">Embedded C++</span>
+            </div>
+            <div class="code-explanation">
+              <p><strong>How it works:</strong> A 2-state machine (FOLLOW_LINE / AVOIDING) with a 14-step sub-machine for avoidance. When an obstacle is detected at ≤5cm, the robot executes a sequence of turns and forward movements. The key innovation is the sweep step (#12) that alternates left/right at 70ms intervals, scanning for the line until it's reliably detected for 120ms.</p>
+            </div>
+            <pre class="code-block"><code><span class="keyword">enum</span> <span class="type">State</span> { FOLLOW_LINE, AVOIDING };
+State currentState = FOLLOW_LINE;
+<span class="type">int</span> avoidStep = 0;
+
+<span class="function">void</span> <span class="function-name">loop</span>() {
+  <span class="keyword">if</span> (currentState == FOLLOW_LINE) {
+    <span class="keyword">if</span> (<span class="function-call">getDistance</span>() &lt; OBSTACLE_DISTANCE) {
+      currentState = AVOIDING;
+      avoidStep = 0;
+      <span class="keyword">return</span>;
+    }
+    <span class="function-call">followLine</span>();
+  }
+  <span class="keyword">else</span> {
+    <span class="function-call">avoidSequence</span>();
+  }
+}
+
+<span class="function">void</span> <span class="function-name">avoidSequence</span>() {
+  <span class="keyword">switch</span> (avoidStep) {
+    <span class="keyword">case</span> 0: <span class="function-call">turnRight</span>(); <span class="keyword">break</span>;  <span class="comment">// Turn away from obstacle</span>
+    <span class="keyword">case</span> 2: <span class="function-call">moveForward</span>(); <span class="keyword">break</span>; <span class="comment">// Move alongside</span>
+    <span class="keyword">case</span> 4: <span class="function-call">turnLeft</span>(); <span class="keyword">break</span>;   <span class="comment">// Turn back toward line</span>
+    <span class="keyword">case</span> 6: <span class="function-call">moveForward</span>(); <span class="keyword">break</span>; <span class="comment">// Pass obstacle</span>
+    <span class="keyword">case</span> 8: <span class="function-call">turnLeft</span>(); <span class="keyword">break</span>;   <span class="comment">// Align with line</span>
+    <span class="keyword">case</span> 12: <span class="comment">// SWEEP: actively scan for line</span>
+      <span class="function-call">sweepForLine</span>();
+      <span class="keyword">break</span>;
+    <span class="keyword">case</span> 13: <span class="comment">// Final right turn, return to FOLLOW_LINE</span>
+      <span class="function-call">turnRight</span>();
+      currentState = FOLLOW_LINE;
+      <span class="keyword">break</span>;
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab: Obstacle Avoiding -->
+        <div class="tab-panel" id="tab-obstacle-avoid">
+          <div class="code-display">
+            <div class="code-header">
+              <span class="code-filename">RoboQuest / Obstacle_Avoiding.ino</span>
+              <span class="code-lang">Embedded C++</span>
+            </div>
+            <div class="code-explanation">
+              <p><strong>How it works:</strong> A 7-state machine with non-blocking millis() timers. When an obstacle is detected at ≤12cm, the robot stops, turns right away from the line, moves forward alongside the obstacle, continues until the ultrasonic sensor reads >18cm (clear), then turns left back toward the line. The REACQUIRE state validates line detection for 250ms before resuming.</p>
+            </div>
+            <pre class="code-block"><code><span class="keyword">enum</span> <span class="type">State</span> {
+  FOLLOW_LINE, AVOID_STOP, AVOID_TURN_OUT,
+  AVOID_GO_PARALLEL, AVOID_PASS_OBSTACLE,
+  AVOID_TURN_IN, REACQUIRE
+};
+
+<span class="function">void</span> <span class="function-name">loop</span>() {
+  <span class="keyword">switch</span> (state) {
+    <span class="keyword">case</span> FOLLOW_LINE:
+      <span class="keyword">if</span> (<span class="function-call">distanceCM</span>() &lt;= 12) {
+        <span class="function-call">enterState</span>(AVOID_STOP);
+      }
+      <span class="function-call">followLine</span>();
+      <span class="keyword">break</span>;
+
+    <span class="keyword">case</span> AVOID_PASS_OBSTACLE:
+      <span class="function-call">moveForward</span>();
+      <span class="keyword">if</span> (<span class="function-call">distanceCM</span>() &gt; 18) {
+        <span class="function-call">enterState</span>(AVOID_TURN_IN);
+      }
+      <span class="keyword">break</span>;
+
+    <span class="keyword">case</span> REACQUIRE:
+      <span class="function-call">moveForward</span>();
+      <span class="comment">// Require stable line for 250ms before locking</span>
+      <span class="keyword">if</span> (seen && millis() - lineSeenStart >= 250) {
+        <span class="function-call">enterState</span>(FOLLOW_LINE);
+      }
+      <span class="comment">// Timeout at 1800ms → gentle spin search</span>
+      <span class="keyword">if</span> (<span class="function-call">elapsed</span>(1800)) {
+        <span class="function-call">turnLeft</span>(); <span class="builtin">delay</span>(250);
+        <span class="function-call">enterState</span>(REACQUIRE);
+      }
+      <span class="keyword">break</span>;
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab: State Round -->
+        <div class="tab-panel" id="tab-state-round">
+          <div class="code-display">
+            <div class="code-header">
+              <span class="code-filename">RoboQuest / State_Round / Objective_1.ino</span>
+              <span class="code-lang">Embedded C++</span>
+            </div>
+            <div class="code-explanation">
+              <p><strong>How it works:</strong> A 10-state machine that handles a complete competition course: line follow → timed stops (2s/3s) → obstacle detection at ≤17cm → more line following → bottle zone approach → final stop. Each state transitions to the next on completion, creating a fully autonomous competition run.</p>
+            </div>
+            <pre class="code-block"><code><span class="comment">// 10-state objective machine for RoboQuest</span>
+<span class="keyword">enum</span> <span class="type">State</span> {
+  FOLLOW_LINE,    STOP_2s,     FOLLOW_LINE_2,
+  STOP_3s,        FOLLOW_LINE_3,
+  OBSTACLE_CHECK, STOP_3s_2,   FOLLOW_LINE_4,
+  FINAL_STOP_1s,  BOTTLES_PRE_CIRCLE,
+  BOTTLES_IN_CIRCLE
+};
+
+<span class="function">void</span> <span class="function-name">loop</span>() {
+  <span class="keyword">switch</span> (state) {
+    <span class="keyword">case</span> FOLLOW_LINE:
+      <span class="function-call">followLine</span>();
+      <span class="keyword">if</span> (<span class="function-call">bothSensorsOff</span>()) {
+        <span class="function-call">enterState</span>(STOP_2s);
+      }
+      <span class="keyword">break</span>;
+
+    <span class="keyword">case</span> STOP_2s:
+      <span class="function-call">stopMoving</span>();
+      <span class="builtin">delay</span>(2000);  <span class="comment">// Timed pause</span>
+      <span class="function-call">enterState</span>(FOLLOW_LINE_2);
+      <span class="keyword">break</span>;
+
+    <span class="keyword">case</span> OBSTACLE_CHECK:
+      <span class="comment">// Check ultrasonic distance</span>
+      <span class="keyword">if</span> (<span class="function-call">distanceCM</span>() &lt;= 17) {
+        <span class="comment">// Obstacle detected — handle it</span>
+      }
+      <span class="function-call">enterState</span>(STOP_3s_2);
+      <span class="keyword">break</span>;
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <!-- Tab: Intersection -->
+        <div class="tab-panel" id="tab-intersection">
+          <div class="code-display">
+            <div class="code-header">
+              <span class="code-filename">Intersection-Handler / Intersection-Handler.ino</span>
+              <span class="code-lang">Embedded C++</span>
+            </div>
+            <div class="code-explanation">
+              <p><strong>How it works:</strong> A 4-state machine that detects intersections (both sensors off-line). When this happens, the robot stops for 2 seconds, moves forward 0.5 seconds past the intersection, then resumes line following. At the next intersection, it stops permanently. This is useful for grid-based tracks with junctions.</p>
+            </div>
+            <pre class="code-block"><code><span class="keyword">enum</span> <span class="type">State</span> {
+  FOLLOW_LINE, INTERSECTION,
+  FOLLOW_LINE_AGAIN, STOP
+};
+
+<span class="function">void</span> <span class="function-name">loop</span>() {
+  <span class="keyword">switch</span> (state) {
+    <span class="keyword">case</span> FOLLOW_LINE:
+      <span class="keyword">if</span> (<span class="function-call">bothOffLine</span>()) {
+        state = INTERSECTION;
+        <span class="function-call">stopMoving</span>();
+        <span class="builtin">delay</span>(2000);
+        <span class="function-call">moveForward</span>();
+        <span class="builtin">delay</span>(500);
+        state = FOLLOW_LINE_AGAIN;
+      } <span class="keyword">else</span> {
+        <span class="function-call">followLine</span>();
+      }
+      <span class="keyword">break</span>;
+
+    <span class="keyword">case</span> FOLLOW_LINE_AGAIN:
+      <span class="keyword">if</span> (<span class="function-call">bothOffLine</span>()) {
+        state = STOP;  <span class="comment">// Final stop at 2nd intersection</span>
+      } <span class="keyword">else</span> {
+        <span class="function-call">followLine</span>();
+      }
+      <span class="keyword">break</span>;
+
+    <span class="keyword">case</span> STOP:
+      <span class="function-call">stopMoving</span>();  <span class="comment">// Permanently stopped</span>
+      <span class="keyword">break</span>;
+  }
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HARDWARE ====== -->
+  <section id="hardware" class="section hardware-section alt-bg">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Hardware &amp; Tech Stack</h2>
+        <p class="section-desc">
+          The components that brought the code to life.
+        </p>
+      </div>
+
+      <div class="hardware-grid" data-aos="fade-up">
+        <div class="hardware-item">
+          <div class="hw-icon">
+            <svg viewBox="0 0 64 64"><rect x="12" y="8" width="40" height="48" rx="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="32" cy="14" r="2" fill="currentColor"/><rect x="22" y="28" width="20" height="6" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </div>
+          <h3>Arduino Uno / Nano</h3>
+          <p>ATmega328P microcontroller — 16 MHz, 32 KB flash, running Embedded C++ via Arduino IDE.</p>
+        </div>
+
+        <div class="hardware-item">
+          <div class="hw-icon">
+            <svg viewBox="0 0 64 64"><rect x="14" y="16" width="36" height="28" rx="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="24" cy="30" r="3" fill="currentColor"/><circle cx="40" cy="30" r="3" fill="currentColor"/></svg>
+          </div>
+          <h3>IR Sensors</h3>
+          <p>2–4 digital/analog infrared reflectance sensors. LOW = on line (black absorbs IR), HIGH = off line.</p>
+        </div>
+
+        <div class="hardware-item">
+          <div class="hw-icon">
+            <svg viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="14" ry="10" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="32" cy="32" r="4" fill="currentColor"/></svg>
+          </div>
+          <h3>HC-SR04 Ultrasonic</h3>
+          <p>40 kHz sonar rangefinder. 2 cm – 4 m range, used for obstacle detection and parking spot finding.</p>
+        </div>
+
+        <div class="hardware-item">
+          <div class="hw-icon">
+            <svg viewBox="0 0 64 64"><rect x="8" y="20" width="48" height="24" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="18" cy="40" r="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="46" cy="40" r="4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+          <h3>L293D Motor Driver</h3>
+          <p>Dual H-bridge for bi-directional DC motor control. Drives two motors with up to 600 mA per channel.</p>
+        </div>
+
+        <div class="hardware-item">
+          <div class="hw-icon">
+            <svg viewBox="0 0 64 64"><rect x="16" y="12" width="32" height="40" rx="3" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="32" cy="24" r="3" fill="currentColor"/><rect x="24" y="34" width="16" height="4" rx="1" fill="currentColor"/></svg>
+          </div>
+          <h3>Adafruit Motor Shield</h3>
+          <p>PWM-based motor driver shield for Arduino. Used in the 3-IR maze solver for smoother motor control.</p>
+        </div>
+
+        <div class="hardware-item">
+          <div class="hw-icon">
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="20" r="8" stroke="currentColor" stroke-width="2" fill="none"/><path d="M20 44c0-6 5.37-12 12-12s12 5.37 12 12" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+          <h3>LDR + LED</h3>
+          <p>Light-dependent resistor for ambient light sensing. Activates headlight LED in dark tunnels (analogRead &lt; 450).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== REPOSITORIES ====== -->
+  <section id="repos" class="section repo-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-number">05</span>
+        <h2 class="section-title">GitHub Repositories</h2>
+        <p class="section-desc">
+          All code is open source. Fork, experiment, and build your own.
+        </p>
+      </div>
+
+      <div class="repo-cards" data-aos="fade-up">
+        <a href="https://github.com/vihaanvp/line-follower" target="_blank" rel="noopener noreferrer" class="repo-card">
+          <div class="repo-card-glow"></div>
+          <div class="repo-icon">
+            <svg viewBox="0 0 48 48"><path d="M24 4C12.95 4 4 12.95 4 24c0 8.84 5.74 16.32 13.68 18.98 1 .18 1.36-.44 1.36-.96 0-.48-.02-2.08-.02-3.78-5.56 1.2-6.74-2.4-6.74-2.4-.92-2.34-2.24-2.96-2.24-2.96-1.82-1.24.14-1.22.14-1.22 2.02.14 3.08 2.08 3.08 2.08 1.78 3.06 4.68 2.18 5.82 1.66.18-1.3.7-2.18 1.28-2.68-4.44-.5-9.1-2.22-9.1-9.88 0-2.18.78-3.96 2.06-5.36-.2-.5-.9-2.54.2-5.28 0 0 1.68-.54 5.5 2.04 1.6-.44 3.3-.66 5-.66 1.7 0 3.4.22 5 .66 3.82-2.58 5.5-2.04 5.5-2.04 1.1 2.74.4 4.78.2 5.28 1.28 1.4 2.06 3.18 2.06 5.36 0 7.66-4.66 9.38-9.1 9.88.72.62 1.36 1.84 1.36 3.72 0 2.68-.02 4.84-.02 5.5 0 .52.36 1.14 1.36.96C38.26 40.32 44 32.84 44 24 44 12.95 35.05 4 24 4z" fill="currentColor"/></svg>
+          </div>
+          <h3>line-follower</h3>
+          <p>TechRadiance competition code — 2-IR, 3-IR, 4-IR, intersection handler, and obstacle avoidance with sweep.</p>
+          <div class="repo-meta">
+            <span>📁 6 sketches</span>
+            <span>⭐ Embedded C++</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/vihaanvp/RoboQuest" target="_blank" rel="noopener noreferrer" class="repo-card">
+          <div class="repo-card-glow"></div>
+          <div class="repo-icon">
+            <svg viewBox="0 0 48 48"><path d="M24 4C12.95 4 4 12.95 4 24c0 8.84 5.74 16.32 13.68 18.98 1 .18 1.36-.44 1.36-.96 0-.48-.02-2.08-.02-3.78-5.56 1.2-6.74-2.4-6.74-2.4-.92-2.34-2.24-2.96-2.24-2.96-1.82-1.24.14-1.22.14-1.22 2.02.14 3.08 2.08 3.08 2.08 1.78 3.06 4.68 2.18 5.82 1.66.18-1.3.7-2.18 1.28-2.68-4.44-.5-9.1-2.22-9.1-9.88 0-2.18.78-3.96 2.06-5.36-.2-.5-.9-2.54.2-5.28 0 0 1.68-.54 5.5 2.04 1.6-.44 3.3-.66 5-.66 1.7 0 3.4.22 5 .66 3.82-2.58 5.5-2.04 5.5-2.04 1.1 2.74.4 4.78.2 5.28 1.28 1.4 2.06 3.18 2.06 5.36 0 7.66-4.66 9.38-9.1 9.88.72.62 1.36 1.84 1.36 3.72 0 2.68-.02 4.84-.02 5.5 0 .52.36 1.14 1.36.96C38.26 40.32 44 32.84 44 24 44 12.95 35.05 4 24 4z" fill="currentColor"/></svg>
+          </div>
+          <h3>RoboQuest</h3>
+          <p>Dr. Homi Bhabha Foundation competition — obstacle avoiding, sweep, parking, U-turn, state round, headlight, and IR obstacle detection.</p>
+          <div class="repo-meta">
+            <span>📁 9 sketches</span>
+            <span>⭐ Embedded C++</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="author-section" data-aos="fade-up">
+        <div class="author-card">
+          <div class="author-avatar">
+            <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="40" cy="28" r="10" fill="currentColor"/><path d="M16 64c0-13.26 10.74-24 24-24s24 10.74 24 24" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+          <div class="author-info">
+            <h3>Vihaan Parlikar</h3>
+            <p>Robotics enthusiast, competitive programmer, and open-source contributor. These repositories contain the code I've used and refined across multiple line follower and robotics competitions.</p>
+            <div class="author-links">
+              <a href="https://github.com/vihaanvp" target="_blank" rel="noopener noreferrer">GitHub →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>Built with Three.js · GSAP · Embedded C++</p>
+        <p>&copy; 2026 <a href="https://github.com/vihaanvp" target="_blank" rel="noopener noreferrer">Vihaan Parlikar</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPTS ====== -->
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Custom scripts -->
+  <script src="src/js/scrollAnimations.js"></script>
+  <script src="src/js/main.js"></script>
+</body>
+</html>
